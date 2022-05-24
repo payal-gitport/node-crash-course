@@ -1,9 +1,19 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+  //loadash
+  const num = _.random(0, 20);
+  console.log(num);
 
+  const greet = _.once(() => {
+    console.log("hello");
+  });
+  greet();
+  greet();
+
+  // console.log(req.url, req.method);
   // res.setHeader("Content-Type", "text/plain"); //set header content type
   // res.write("Hello, ninjas"); //response
   // res.setHeader("Content-Type", "text/html");// set header type as html
@@ -24,7 +34,7 @@ const server = http.createServer((req, res) => {
       path += "about.html";
       res.statusCode = 200;
       break;
-    case "/about-me":
+    case "/about-us":
       res.statusCode = 301;
       res.setHeader("Location", "/about");
       res.end();
